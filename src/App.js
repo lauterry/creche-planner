@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {NOMBRE_BEBE_MAX_PAR_PRO, NOMBRE_MOYEN_MAX_PAR_PRO} from "./contants";
 import setMinutes from "date-fns/set_minutes";
 import addMinutes from "date-fns/add_minutes";
 import isBefore from "date-fns/is_before";
@@ -434,6 +435,31 @@ const MOYENS = [
 				"fin": "18h45"
 			}
 		}
+	},
+	{
+		"name": "BENDHAMANE INES",
+		"planning": {
+			"lundi": {
+				"debut": "9h15",
+				"fin": "17h45"
+			},
+			"mardi": {
+				"debut": "9h15",
+				"fin": "17h30"
+			},
+			"mercredi": {
+				"debut": "9h15",
+				"fin": "18h45"
+			},
+			"jeudi": {
+				"debut": "10h15",
+				"fin": "17h45"
+			},
+			"vendredi": {
+				"debut": "8h15",
+				"fin": "18h45"
+			}
+		}
 	}
 ];
 
@@ -457,7 +483,9 @@ class App extends Component {
 								<div className="planning__horaire">
 									<div className="planning__heure">Horaire</div>
 									<div className="planning__count">Bébés</div>
+									<div className="planning__count">Pro</div>
 									<div className="planning__count">Moyens</div>
+									<div className="planning__count">Pro</div>
 								</div>
 
 								{
@@ -480,7 +508,7 @@ class App extends Component {
 											}
 										});
 
-										const moyensPresents = MOYENS.filter(enfant => {
+										const moyenPresents = MOYENS.filter(enfant => {
 
 											if (enfant.planning[jour] && enfant.planning[jour].debut) {
 												const enfantTime = enfant.planning[jour].debut.split("h");
@@ -501,7 +529,9 @@ class App extends Component {
 										return <div className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
 											<div className="planning__count">{bebePresents.length}</div>
-											<div className="planning__count">{moyensPresents.length}</div>
+											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
+											<div className="planning__count">{moyenPresents.length}</div>
+											<div className="planning__count">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
 										</div>
 									})
 								}
@@ -546,7 +576,9 @@ class App extends Component {
 										return <div className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
 											<div className="planning__count">{bebePresents.length}</div>
+											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
 											<div className="planning__count">{moyenPresents.length}</div>
+											<div className="planning__count">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
 										</div>
 									})
 								}
