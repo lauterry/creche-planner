@@ -1,5 +1,11 @@
 import React, {Component} from "react";
-import {NOMBRE_BEBE_MAX_PAR_PRO, NOMBRE_MOYEN_MAX_PAR_PRO} from "./contants";
+import {
+	NOMBRE_BEBE_MAX_PAR_PRO,
+	NOMBRE_MOYEN_MAX_PAR_PRO,
+	JOURS,
+	HORAIRES_CLE_MATIN,
+	HORAIRES_CLE_SOIR
+} from "./contants";
 import setMinutes from "date-fns/set_minutes";
 import addMinutes from "date-fns/add_minutes";
 import isBefore from "date-fns/is_before";
@@ -9,463 +15,12 @@ import setHours from "date-fns/set_hours";
 import logo from "./logo.svg";
 import "./App.css";
 
-const JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"];
-
-const HORAIRES_CLE_MATIN = ["7h30", "8h00", "8h30", "9h00", "9h30", "10h00"];
-const HORAIRES_CLE_SOIR = ["16h30", "17h00", "17h30", "18h00", "18h30", "19h00"];
-
-const BEBES = [
-	{
-		"name": "Bouleau Alice",
-		"planning": {
-			"lundi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "Diallo Amadou Welle",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mardi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"jeudi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "Dop Serigne",
-		"planning": {
-			"lundi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Fernandes Simon",
-		"planning": {
-			"lundi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Ghanem Elias",
-		"planning": {
-			"lundi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Bouleau Alice",
-		"planning": {
-			"lundi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "Diallo Amadou Welle",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mardi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"jeudi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "Dop Serigne",
-		"planning": {
-			"lundi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Fernandes Simon",
-		"planning": {
-			"lundi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Ghanem Elias",
-		"planning": {
-			"lundi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			}
-		}
-	}
-];
-
-const MOYENS = [
-	{
-		"name": "AIDEL MERYEM",
-		"planning": {
-			"lundi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h45",
-				"fin": "16h00"
-			},
-			"mercredi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "AKKARI NAJIM",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h30",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "ARANGO DILAN",
-		"planning": {
-			"lundi": {
-				"debut": "11h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "11h00",
-				"fin": "17h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "16h30"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "AIDEL MERYEM",
-		"planning": {
-			"lundi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h45",
-				"fin": "16h00"
-			},
-			"mercredi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "AKKARI NAJIM",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h30",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "ARANGO DILAN",
-		"planning": {
-			"lundi": {
-				"debut": "11h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "11h00",
-				"fin": "17h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "16h30"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	}
-];
 
 class App extends Component {
 
 	render() {
+
+		const {bebes = [], moyens = []} = this.props;
 
 		const today = new Date();
 
@@ -477,8 +32,8 @@ class App extends Component {
 				</div>
 				<div className="planning">
 					{
-						JOURS.map(jour => {
-							return <div className="planning__day">
+						JOURS.map((jour, index) => {
+							return <div key={index} className="planning__day">
 								<div style={ {marginTop: "20px"} }>{jour}</div>
 								<div className="planning__horaire">
 									<div className="planning__heure">Horaire</div>
@@ -489,8 +44,8 @@ class App extends Component {
 								</div>
 
 								{
-									HORAIRES_CLE_MATIN.map((horaire) => {
-										const bebePresents = BEBES.filter(enfant => {
+									HORAIRES_CLE_MATIN.map((horaire, index) => {
+										const bebePresents = bebes.filter(enfant => {
 
 											if (enfant.planning[jour] && enfant.planning[jour].debut) {
 												const enfantTime = enfant.planning[jour].debut.split("h");
@@ -508,7 +63,7 @@ class App extends Component {
 											}
 										});
 
-										const moyenPresents = MOYENS.filter(enfant => {
+										const moyenPresents = moyens.filter(enfant => {
 
 											if (enfant.planning[jour] && enfant.planning[jour].debut) {
 												const enfantTime = enfant.planning[jour].debut.split("h");
@@ -526,7 +81,7 @@ class App extends Component {
 											}
 										});
 
-										return <div className="planning__horaire">
+										return <div key={index} className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
 											<div className="planning__count">{bebePresents.length}</div>
 											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
@@ -538,8 +93,8 @@ class App extends Component {
 
 
 								{
-									HORAIRES_CLE_SOIR.map((horaire) => {
-										const bebePresents = BEBES.filter(enfant => {
+									HORAIRES_CLE_SOIR.map((horaire, index) => {
+										const bebePresents = bebes.filter(enfant => {
 											if (enfant.planning[jour] && enfant.planning[jour].fin) {
 												const enfantTime = enfant.planning[jour].fin.split("h");
 												const enfantHeures = enfantTime[0];
@@ -556,7 +111,7 @@ class App extends Component {
 											}
 										});
 
-										const moyenPresents = MOYENS.filter(enfant => {
+										const moyenPresents = moyens.filter(enfant => {
 											if (enfant.planning[jour] && enfant.planning[jour].fin) {
 												const enfantTime = enfant.planning[jour].fin.split("h");
 												const enfantHeures = enfantTime[0];
@@ -573,7 +128,7 @@ class App extends Component {
 											}
 										});
 
-										return <div className="planning__horaire">
+										return <div key={index} className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
 											<div className="planning__count">{bebePresents.length}</div>
 											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
