@@ -1,0 +1,119 @@
+[
+    {
+        "name": "Bouleau Alice",
+        "planning": {
+            "lu": {
+                "debut": "8h",
+                "fin": "18h"
+            },
+            "ma": {
+                "debut": "8h",
+                "fin": "18h"
+            },
+            "me": {
+                "debut": "8h",
+                "fin": "18h"
+            },
+            "je": {
+                "debut": "8h",
+                "fin": "18h"
+            }
+        }
+    },
+    {
+        "name": "Diallo Amadou Welle",
+        "planning": {
+            "lu": {
+                "debut": "9h",
+                "fin": "17h"
+            },
+            "ma": {
+                "debut": "9h",
+                "fin": "17h"
+            },
+            "me": {
+                "debut": "9h",
+                "fin": "17h"
+            },
+            "je": {
+                "debut": "9h",
+                "fin": "17h"
+            },
+            "ve": {
+                "debut": "9h",
+                "fin": "17h45"
+            }
+        }
+    },
+    {
+        "name": "Dop Serigne",
+        "planning": {
+            "lu": {
+                "debut": "10h",
+                "fin": "18h45"
+            },
+            "ma": {
+                "debut": "10h",
+                "fin": "18h45"
+            },
+            "me": {
+                "debut": "10h",
+                "fin": "18h45"
+            },
+            "je": {
+                "debut": "10h",
+                "fin": "18h45"
+            }
+        }
+    },
+    {
+        "name": "Fernandes Simon",
+        "planning": {
+            "lu": {
+                "debut": "8h15",
+                "fin": "18h45"
+            },
+            "ma": {
+                "debut": "8h15",
+                "fin": "18h45"
+            },
+            "me": {
+                "debut": "8h15",
+                "fin": "18h45"
+            },
+            "je": {
+                "debut": "8h15",
+                "fin": "18h45"
+            },
+            "ve": {
+                "debut": "8h15",
+                "fin": "18h45"
+            }
+        }
+    },
+    {
+        "name": "Ghanem Elias",
+        "planning": {
+            "lu": {
+                "debut": "7h45",
+                "fin": "18h45"
+            },
+            "ma": {
+                "debut": "7h45",
+                "fin": "18h45"
+            },
+            "me": {
+                "debut": "7h45",
+                "fin": "18h45"
+            },
+            "je": {
+                "debut": "7h45",
+                "fin": "18h45"
+            },
+            "ve": {
+                "debut": "7h45",
+                "fin": "18h45"
+            }
+        }
+    }
+]
