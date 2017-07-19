@@ -12,7 +12,6 @@ import isBefore from "date-fns/is_before";
 import isAfter from "date-fns/is_after";
 import isEqual from "date-fns/is_equal";
 import setHours from "date-fns/set_hours";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -25,21 +24,22 @@ class App extends Component {
 
 		return (
 			<div className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo"/>
-					<h2>Welcome to React</h2>
+
+				<div className="actions">
+					<a className="actions__button" target="_blank" href="https://docs.google.com/spreadsheets/d/1XTkgsw4YKXWfCQn6X79zjVPGZkDw7MqH_5I9YPC5M-Y/edit#gid=0">Modifier le planning</a>
 				</div>
+
 				<div className="planning">
 					{
 						JOURS.map((jour, index) => {
 							return <div key={index} className="planning__day">
-								<div style={ {marginTop: "20px"} }>{jour}</div>
-								<div className="planning__horaire">
+								<div className="planning__jour">{jour}</div>
+								<div className="planning__title">
 									<div className="planning__heure">Horaire</div>
-									<div className="planning__count">Bébés</div>
-									<div className="planning__count">Pro</div>
-									<div className="planning__count">Moyens</div>
-									<div className="planning__count">Pro</div>
+									<div className="planning__count planning__count--bebe">Bébés</div>
+									<div className="planning__count planning__count--bebe">Pro</div>
+									<div className="planning__count planning__count--moyen">Moyens</div>
+									<div className="planning__count planning__count--moyen">Pro</div>
 								</div>
 
 								{
@@ -82,10 +82,10 @@ class App extends Component {
 
 										return <div key={index} className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
-											<div className="planning__count">{bebePresents.length}</div>
-											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
-											<div className="planning__count">{moyenPresents.length}</div>
-											<div className="planning__count">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
+											<div className="planning__count planning__count--bebe">{bebePresents.length}</div>
+											<div className="planning__count planning__count--bebe">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
+											<div className="planning__count planning__count--moyen">{moyenPresents.length}</div>
+											<div className="planning__count planning__count--moyen">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
 										</div>
 									})
 								}
@@ -129,10 +129,10 @@ class App extends Component {
 
 										return <div key={index} className="planning__horaire">
 											<div className="planning__heure">{horaire}</div>
-											<div className="planning__count">{bebePresents.length}</div>
-											<div className="planning__count">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
-											<div className="planning__count">{moyenPresents.length}</div>
-											<div className="planning__count">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
+											<div className="planning__count planning__count--bebe">{bebePresents.length}</div>
+											<div className="planning__count planning__count--bebe">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
+											<div className="planning__count planning__count--moyen">{moyenPresents.length}</div>
+											<div className="planning__count planning__count--moyen">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
 										</div>
 									})
 								}
