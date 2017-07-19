@@ -1,0 +1,30 @@
+.children {
+	display: flex;
+	margin-left: 10px;
+	margin-right: 10px;
+	flex-direction: column;
+}
+
+.children__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.children__title {
+	text-align: center;
+	width: 60px;
+}
+
+.children__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.children__column {
+	width: 60px;
+	text-align: center;
+}
