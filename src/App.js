@@ -15,7 +15,6 @@ import setHours from "date-fns/set_hours";
 import logo from "./logo.svg";
 import "./App.css";
 
-
 class App extends Component {
 
 	render() {
@@ -48,12 +47,12 @@ class App extends Component {
 										const bebePresents = bebes.filter(enfant => {
 
 											if (enfant.planning[jour] && enfant.planning[jour].debut) {
-												const enfantTime = enfant.planning[jour].debut.split("h");
+												const enfantTime = enfant.planning[jour].debut.split("H");
 												const enfantHeures = enfantTime[0];
 												const enfantMinutes = enfantTime[1] || 0;
 												const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
 
-												const horaireTime = horaire.split("h");
+												const horaireTime = horaire.split("H");
 												const horaireHeures = horaireTime[0];
 												const horaireMinutes = horaireTime[1] || 0;
 
@@ -66,12 +65,12 @@ class App extends Component {
 										const moyenPresents = moyens.filter(enfant => {
 
 											if (enfant.planning[jour] && enfant.planning[jour].debut) {
-												const enfantTime = enfant.planning[jour].debut.split("h");
+												const enfantTime = enfant.planning[jour].debut.split("H");
 												const enfantHeures = enfantTime[0];
 												const enfantMinutes = enfantTime[1] || 0;
 												const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
 
-												const horaireTime = horaire.split("h");
+												const horaireTime = horaire.split("H");
 												const horaireHeures = horaireTime[0];
 												const horaireMinutes = horaireTime[1] || 0;
 
@@ -96,12 +95,12 @@ class App extends Component {
 									HORAIRES_CLE_SOIR.map((horaire, index) => {
 										const bebePresents = bebes.filter(enfant => {
 											if (enfant.planning[jour] && enfant.planning[jour].fin) {
-												const enfantTime = enfant.planning[jour].fin.split("h");
+												const enfantTime = enfant.planning[jour].fin.split("H");
 												const enfantHeures = enfantTime[0];
 												const enfantMinutes = enfantTime[1] || 0;
 												const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
 
-												const horaireTime = horaire.split("h");
+												const horaireTime = horaire.split("H");
 												const horaireHeures = horaireTime[0];
 												const horaireMinutes = horaireTime[1] || 0;
 
@@ -113,12 +112,12 @@ class App extends Component {
 
 										const moyenPresents = moyens.filter(enfant => {
 											if (enfant.planning[jour] && enfant.planning[jour].fin) {
-												const enfantTime = enfant.planning[jour].fin.split("h");
+												const enfantTime = enfant.planning[jour].fin.split("H");
 												const enfantHeures = enfantTime[0];
 												const enfantMinutes = enfantTime[1] || 0;
 												const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
 
-												const horaireTime = horaire.split("h");
+												const horaireTime = horaire.split("H");
 												const horaireHeures = horaireTime[0];
 												const horaireMinutes = horaireTime[1] || 0;
 

@@ -1,459 +1,76 @@
-
-const BEBES = [
-	{
-		"name": "Bouleau Alice",
-		"planning": {
-			"lundi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "Diallo Amadou Welle",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mardi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"jeudi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "Dop Serigne",
-		"planning": {
-			"lundi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Fernandes Simon",
-		"planning": {
-			"lundi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Ghanem Elias",
-		"planning": {
-			"lundi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Bouleau Alice",
-		"planning": {
-			"lundi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "Diallo Amadou Welle",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mardi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"jeudi": {
-				"debut": "9h00",
-				"fin": "17h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "Dop Serigne",
-		"planning": {
-			"lundi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Fernandes Simon",
-		"planning": {
-			"lundi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "Ghanem Elias",
-		"planning": {
-			"lundi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"mercredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			},
-			"vendredi": {
-				"debut": "7h45",
-				"fin": "18h45"
-			}
-		}
-	}
-];
-
-const MOYENS = [
-	{
-		"name": "AIDEL MERYEM",
-		"planning": {
-			"lundi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h45",
-				"fin": "16h00"
-			},
-			"mercredi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "AKKARI NAJIM",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h30",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "ARANGO DILAN",
-		"planning": {
-			"lundi": {
-				"debut": "11h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "11h00",
-				"fin": "17h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "16h30"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "AIDEL MERYEM",
-		"planning": {
-			"lundi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"mardi": {
-				"debut": "8h45",
-				"fin": "16h00"
-			},
-			"mercredi": {
-				"debut": "8h45",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			}
-		}
-	},
-	{
-		"name": "AKKARI NAJIM",
-		"planning": {
-			"lundi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h30",
-				"fin": "17h00"
-			},
-			"mercredi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"jeudi": {
-				"debut": "8h00",
-				"fin": "18h00"
-			},
-			"vendredi": {
-				"debut": "9h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "ARANGO DILAN",
-		"planning": {
-			"lundi": {
-				"debut": "11h00",
-				"fin": "18h45"
-			},
-			"mardi": {
-				"debut": "11h00",
-				"fin": "17h45"
-			},
-			"mercredi": {
-				"debut": "10h00",
-				"fin": "16h30"
-			},
-			"jeudi": {
-				"debut": "10h00",
-				"fin": "17h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	},
-	{
-		"name": "BENDHAMANE INES",
-		"planning": {
-			"lundi": {
-				"debut": "9h15",
-				"fin": "17h45"
-			},
-			"mardi": {
-				"debut": "9h15",
-				"fin": "17h30"
-			},
-			"mercredi": {
-				"debut": "9h15",
-				"fin": "18h45"
-			},
-			"jeudi": {
-				"debut": "10h15",
-				"fin": "17h45"
-			},
-			"vendredi": {
-				"debut": "8h15",
-				"fin": "18h45"
-			}
-		}
-	}
-];
-
 export default (enfants = {bebes: [], moyens: []}, action) => {
 	switch (action.type) {
-		default :
+		case "FETCH_CHILDREN_SUCCESS": {
+			const bebes = action.children.filter(child => {
+				return child.section === "bebe";
+			});
+
+			const serializedBebes = bebes.map(bebe => {
+				return {
+					name: bebe.nom,
+					planning: {
+						lundi: {
+							debut: bebe.lundi_arrivee,
+							fin: bebe.lundi_depart
+						},
+						mardi: {
+							debut: bebe.mardi_arrivee,
+							fin: bebe.mardi_depart
+						},
+						mercredi: {
+							debut: bebe.mercredi_arrivee,
+							fin: bebe.mercredi_depart
+						},
+						jeudi: {
+							debut: bebe.jeudi_arrivee,
+							fin: bebe.jeudi_depart
+						},
+						vendredi: {
+							debut: bebe.vendredi_arrivee,
+							fin: bebe.vendredi_depart
+						}
+					}
+				}
+			});
+
+			const moyens = action.children.filter(child => {
+				return child.section === "moyen";
+			});
+
+			const serializedMoyens = moyens.map(moyen => {
+				return {
+					name: moyen.nom,
+					planning: {
+						lundi: {
+							debut: moyen.lundi_arrivee,
+							fin: moyen.lundi_depart
+						},
+						mardi: {
+							debut: moyen.mardi_arrivee,
+							fin: moyen.mardi_depart
+						},
+						mercredi: {
+							debut: moyen.mercredi_arrivee,
+							fin: moyen.mercredi_depart
+						},
+						jeudi: {
+							debut: moyen.jeudi_arrivee,
+							fin: moyen.jeudi_depart
+						},
+						vendredi: {
+							debut: moyen.vendredi_arrivee,
+							fin: moyen.vendredi_depart
+						}
+					}
+				}
+			});
+
 			return {
-				bebes: BEBES,
-				moyens: MOYENS
+				bebes: serializedBebes,
+				moyens: serializedMoyens
 			};
+		}
+		default :
+			return enfants;
 	}
 };
