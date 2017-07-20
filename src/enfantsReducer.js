@@ -8,6 +8,7 @@ export default (enfants = {bebes: [], moyens: []}, action) => {
 			const serializedBebes = bebes.map(bebe => {
 				return {
 					name: bebe.nom,
+					present: bebe.present,
 					planning: {
 						lundi: {
 							debut: bebe.lundi_arrivee,
@@ -40,6 +41,7 @@ export default (enfants = {bebes: [], moyens: []}, action) => {
 			const serializedMoyens = moyens.map(moyen => {
 				return {
 					name: moyen.nom,
+					present: moyen.present,
 					planning: {
 						lundi: {
 							debut: moyen.lundi_arrivee,

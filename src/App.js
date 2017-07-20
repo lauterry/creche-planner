@@ -85,7 +85,7 @@ class App extends Component {
 											HORAIRES_CLE_MATIN.map((horaire, index) => {
 												const bebePresents = bebes.filter(enfant => {
 
-													if (enfant.planning[jour] && enfant.planning[jour].debut) {
+													if (enfant.planning[jour] && enfant.planning[jour].debut && enfant.present) {
 														const enfantTime = enfant.planning[jour].debut.split("H");
 														const enfantHeures = enfantTime[0];
 														const enfantMinutes = enfantTime[1] || 0;
@@ -103,7 +103,7 @@ class App extends Component {
 
 												const moyenPresents = moyens.filter(enfant => {
 
-													if (enfant.planning[jour] && enfant.planning[jour].debut) {
+													if (enfant.planning[jour] && enfant.planning[jour].debut && enfant.present) {
 														const enfantTime = enfant.planning[jour].debut.split("H");
 														const enfantHeures = enfantTime[0];
 														const enfantMinutes = enfantTime[1] || 0;
@@ -133,7 +133,7 @@ class App extends Component {
 										{
 											HORAIRES_CLE_SOIR.map((horaire, index) => {
 												const bebePresents = bebes.filter(enfant => {
-													if (enfant.planning[jour] && enfant.planning[jour].fin) {
+													if (enfant.planning[jour] && enfant.planning[jour].fin && enfant.present) {
 														const enfantTime = enfant.planning[jour].fin.split("H");
 														const enfantHeures = enfantTime[0];
 														const enfantMinutes = enfantTime[1] || 0;
@@ -150,7 +150,7 @@ class App extends Component {
 												});
 
 												const moyenPresents = moyens.filter(enfant => {
-													if (enfant.planning[jour] && enfant.planning[jour].fin) {
+													if (enfant.planning[jour] && enfant.planning[jour].fin && enfant.present) {
 														const enfantTime = enfant.planning[jour].fin.split("H");
 														const enfantHeures = enfantTime[0];
 														const enfantMinutes = enfantTime[1] || 0;
