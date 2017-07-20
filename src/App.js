@@ -25,7 +25,7 @@ class App extends Component {
 		const showLoading = bebes.length === 0 && moyens.length === 0;
 
 		return (
-			<div className="App">
+			<div className="app">
 
 				<div className="actions">
 					<a className="actions__button" target="_blank" href="https://docs.google.com/spreadsheets/d/1XTkgsw4YKXWfCQn6X79zjVPGZkDw7MqH_5I9YPC5M-Y/edit#gid=0">Modifier le planning</a>
