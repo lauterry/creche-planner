@@ -47,6 +47,7 @@
 
 .planning {
 	display: flex;
+	width: 100%;
 	padding: 30px 20px;
 	overflow-x: auto;
 	font-size: .8rem;
@@ -118,7 +119,8 @@
 	color: black;
 }
 
-.planning__count--bebe:nth-child(3) {
+.planning__count--bebe:nth-child(3),
+.planning__count--moyen:nth-child(5) {
 	margin-right: 20px;
 }
 

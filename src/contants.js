@@ -2,6 +2,8 @@ export const NOMBRE_BEBE_MAX_PAR_PRO = 5;
 
 export const NOMBRE_MOYEN_MAX_PAR_PRO = 8;
 
+export const NOMBRE_GRAND_MAX_PAR_PRO = 8;
+
 export const JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"];
 
 export const HORAIRES_CLE_MATIN = ["7H30", "8H00", "8H30", "9H00", "9H30", "10H00"];

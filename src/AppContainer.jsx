@@ -20,7 +20,8 @@ class AppContainer extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		bebes: state.enfants.bebes,
-		moyens: state.enfants.moyens
+		moyens: state.enfants.moyens,
+		grands: state.enfants.grands
 	};
 };
 

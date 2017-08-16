@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {
 	NOMBRE_BEBE_MAX_PAR_PRO,
 	NOMBRE_MOYEN_MAX_PAR_PRO,
+	NOMBRE_GRAND_MAX_PAR_PRO,
 	JOURS,
 	HORAIRES_CLE_MATIN,
 	HORAIRES_CLE_SOIR
@@ -18,17 +19,17 @@ class App extends Component {
 
 	render() {
 
-		const {bebes = [], moyens = []} = this.props;
+		const {bebes = [], moyens = [], grands = []} = this.props;
 
 		const today = new Date();
 
-		const showLoading = bebes.length === 0 && moyens.length === 0;
+		const showLoading = bebes.length === 0 && moyens.length === 0 && grands.length === 0;
 
 		return (
 			<div className="app">
 
 				<div className="actions">
-					<a className="actions__button" target="_blank" href="https://docs.google.com/spreadsheets/d/1XTkgsw4YKXWfCQn6X79zjVPGZkDw7MqH_5I9YPC5M-Y/edit#gid=0">Modifier le planning</a>
+					<a className="actions__button" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1XTkgsw4YKXWfCQn6X79zjVPGZkDw7MqH_5I9YPC5M-Y/edit#gid=0">Modifier le planning</a>
 				</div>
 
 				{
@@ -79,11 +80,13 @@ class App extends Component {
 											<div className="planning__count planning__count--bebe">Pro</div>
 											<div className="planning__count planning__count--moyen">Moyens</div>
 											<div className="planning__count planning__count--moyen">Pro</div>
+											<div className="planning__count planning__count--moyen">Grands</div>
+											<div className="planning__count planning__count--moyen">Pro</div>
 										</div>
 
 										{
 											HORAIRES_CLE_MATIN.map((horaire, index) => {
-												const bebePresents = bebes.filter(enfant => {
+												const bebePresents = bebes.filter(enfant => { // eslint-disable-line array-callback-return
 
 													if (enfant.planning[jour] && enfant.planning[jour].debut && enfant.present && enfant.planning[jour].present) {
 														const enfantTime = enfant.planning[jour].debut.split("H");
@@ -101,7 +104,7 @@ class App extends Component {
 													}
 												});
 
-												const moyenPresents = moyens.filter(enfant => {
+												const moyenPresents = moyens.filter(enfant => { // eslint-disable-line array-callback-return
 
 													if (enfant.planning[jour] && enfant.planning[jour].debut && enfant.present && enfant.planning[jour].present) {
 														const enfantTime = enfant.planning[jour].debut.split("H");
@@ -118,6 +121,25 @@ class App extends Component {
 														return isBefore(enfantDate, addMinutes(horaireDate, 15)) || isEqual(enfantDate, addMinutes(horaireDate, 15));
 													}
 												});
+
+												const grandsPresents = grands.filter(grand => { // eslint-disable-line array-callback-return
+
+													if (grand.planning[jour] && grand.planning[jour].debut && grand.present && grand.planning[jour].present) {
+														const enfantTime = grand.planning[jour].debut.split("H");
+														const enfantHeures = enfantTime[0];
+														const enfantMinutes = enfantTime[1] || 0;
+														const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
+
+														const horaireTime = horaire.split("H");
+														const horaireHeures = horaireTime[0];
+														const horaireMinutes = horaireTime[1] || 0;
+
+														const horaireDate = setHours(setMinutes(today, horaireMinutes), horaireHeures);
+
+														return isBefore(enfantDate, addMinutes(horaireDate, 15)) || isEqual(enfantDate, addMinutes(horaireDate, 15));
+													}
+												});
+
 
 												return <div key={index} className="planning__horaire">
 													<div className="planning__heure">{horaire}</div>
@@ -125,6 +147,8 @@ class App extends Component {
 													<div className="planning__count planning__count--bebe">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
 													<div className="planning__count planning__count--moyen">{moyenPresents.length}</div>
 													<div className="planning__count planning__count--moyen">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
+													<div className="planning__count planning__count--moyen">{grandsPresents.length}</div>
+													<div className="planning__count planning__count--moyen">{Math.ceil(grandsPresents.length / NOMBRE_GRAND_MAX_PAR_PRO)}</div>
 												</div>
 											})
 										}
@@ -132,7 +156,7 @@ class App extends Component {
 
 										{
 											HORAIRES_CLE_SOIR.map((horaire, index) => {
-												const bebePresents = bebes.filter(enfant => {
+												const bebePresents = bebes.filter(enfant => { // eslint-disable-line array-callback-return
 													if (enfant.planning[jour] && enfant.planning[jour].fin && enfant.present && enfant.planning[jour].present) {
 														const enfantTime = enfant.planning[jour].fin.split("H");
 														const enfantHeures = enfantTime[0];
@@ -149,7 +173,24 @@ class App extends Component {
 													}
 												});
 
-												const moyenPresents = moyens.filter(enfant => {
+												const moyenPresents = moyens.filter(enfant => { // eslint-disable-line array-callback-return
+													if (enfant.planning[jour] && enfant.planning[jour].fin && enfant.present && enfant.planning[jour].present) {
+														const enfantTime = enfant.planning[jour].fin.split("H");
+														const enfantHeures = enfantTime[0];
+														const enfantMinutes = enfantTime[1] || 0;
+														const enfantDate = setHours(setMinutes(today, enfantMinutes), enfantHeures);
+
+														const horaireTime = horaire.split("H");
+														const horaireHeures = horaireTime[0];
+														const horaireMinutes = horaireTime[1] || 0;
+
+														const horaireDate = setHours(setMinutes(today, horaireMinutes), horaireHeures);
+
+														return isAfter(addMinutes(enfantDate, 15), horaireDate) || isEqual(addMinutes(enfantDate,15), horaireDate);
+													}
+												});
+
+												const grandsPresents = grands.filter(enfant => { // eslint-disable-line array-callback-return
 													if (enfant.planning[jour] && enfant.planning[jour].fin && enfant.present && enfant.planning[jour].present) {
 														const enfantTime = enfant.planning[jour].fin.split("H");
 														const enfantHeures = enfantTime[0];
@@ -172,6 +213,8 @@ class App extends Component {
 													<div className="planning__count planning__count--bebe">{Math.ceil(bebePresents.length / NOMBRE_BEBE_MAX_PAR_PRO)}</div>
 													<div className="planning__count planning__count--moyen">{moyenPresents.length}</div>
 													<div className="planning__count planning__count--moyen">{Math.ceil(moyenPresents.length / NOMBRE_MOYEN_MAX_PAR_PRO)}</div>
+													<div className="planning__count planning__count--moyen">{grandsPresents.length}</div>
+													<div className="planning__count planning__count--moyen">{Math.ceil(grandsPresents.length / NOMBRE_GRAND_MAX_PAR_PRO)}</div>
 												</div>
 											})
 										}

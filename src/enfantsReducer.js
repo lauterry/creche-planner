@@ -82,9 +82,48 @@ export default (enfants = {bebes: [], moyens: []}, action) => {
 				}
 			});
 
+			const grands = action.children.filter(child => {
+				return child.section === "grand";
+			});
+
+			const serializeGrands = grands.map(grand => {
+				return {
+					name: grand.nom,
+					present: grand.present,
+					planning: {
+						lundi: {
+							debut: grand.lundi_arrivee,
+							fin: grand.lundi_depart,
+							present: grand.present_lundi
+						},
+						mardi: {
+							debut: grand.mardi_arrivee,
+							fin: grand.mardi_depart,
+							present: grand.present_mardi
+						},
+						mercredi: {
+							debut: grand.mercredi_arrivee,
+							fin: grand.mercredi_depart,
+							present: grand.present_mercredi
+						},
+						jeudi: {
+							debut: grand.jeudi_arrivee,
+							fin: grand.jeudi_depart,
+							present: grand.present_jeudi
+						},
+						vendredi: {
+							debut: grand.vendredi_arrivee,
+							fin: grand.vendredi_depart,
+							present: grand.present_vendredi
+						}
+					}
+				}
+			});
+
 			return {
 				bebes: serializedBebes,
-				moyens: serializedMoyens
+				moyens: serializedMoyens,
+				grands: serializeGrands
 			};
 		}
 		default :
